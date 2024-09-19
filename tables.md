@@ -10,9 +10,6 @@
 - **is_superuser**: `BOOL DEFAULT FALSE`  
   _Флаг, указывающий, является ли пользователь суперпользователем. По умолчанию FALSE._
   
-- **username**: `VARCHAR(255) UNIQUE`  
-  _Имя пользователя, уникальное и обязательное поле._
-  
 - **email**: `VARCHAR(255) UNIQUE`  
   _Электронная почта пользователя, уникальное и обязательное поле._
 
@@ -62,21 +59,7 @@
   _Описание жанра._
 
 
-### 5. persons
-- **id**: `INT UNSIGNED AUTO_INCREMENT PRIMARY KEY`  
-  _Уникальный идентификатор персоны._
-  
-- **full_name**: `VARCHAR(255) NOT NULL`  
-  _Полное имя персоны, обязательное поле._
-  
-- **photo**: `BLOB`  
-  _Фото персоны._
-  
-- **birth_date**: `DATE`  
-  _Дата рождения персоны._
-
-
-### 6. movies
+### 5. movies
 - **id**: `INT UNSIGNED AUTO_INCREMENT PRIMARY KEY`  
   _Уникальный идентификатор фильма._
   
@@ -85,9 +68,6 @@
   
 - **description**: `TEXT`  
   _Описание фильма._
-  
-- **director_id**: `INT UNSIGNED`  
-  _ID режиссера фильма, связь один ко многим._
   
 - **duration**: `INT UNSIGNED`  
   _Длительность фильма в минутах._
@@ -102,13 +82,13 @@
   _Рейтинг фильма, значение от 0 до 10._
 
 
-### 7. movie_genres
+### 6. movie_genres
 - **movie_id**: `INT UNSIGNED NOT NULL`  
 - **genre_id**: `INT UNSIGNED NOT NULL`  
   _Связь многие ко многим таблиц movies и genres._
 
 
-### 8. halls
+### 7. halls
 - **id**: `INT UNSIGNED AUTO_INCREMENT PRIMARY KEY`  
   _Уникальный идентификатор зала._
   
@@ -116,7 +96,7 @@
   _Название зала, обязательное поле._
 
 
-### 9. hall_seats
+### 8. seats
 - **id**: `INT UNSIGNED AUTO_INCREMENT PRIMARY KEY`  
   _Уникальный идентификатор места._
   
@@ -126,11 +106,11 @@
 - **row**: `TINYINT UNSIGNED NOT NULL`  
   _Номер ряда, обязательное поле._
   
-- **seats**: `TINYINT UNSIGNED NOT NULL`  
-  _Количество мест в ряду, обязательное поле._
+- **number**: `TINYINT UNSIGNED NOT NULL`  
+  _Номер места в ряду, обязательное поле._
 
 
-### 10. showtimes
+### 9. showtimes
 - **id**: `INT UNSIGNED AUTO_INCREMENT PRIMARY KEY`  
   _Уникальный идентификатор сеанса._
   
@@ -151,27 +131,24 @@
 
 
 
-### 11. tickets
+### 10. tickets
 - **id**: `INT UNSIGNED AUTO_INCREMENT PRIMARY KEY`  
   _Уникальный идентификатор билета._
   
-- **user_id**: `INT UNSIGNED NOT NULL`  
-  _ID пользователя, который купил билет, связь один ко многим._
+- **client_id**: `INT UNSIGNED NOT NULL`  
+  _ID клиента, который купил билет, связь один ко многим._
   
 - **showtime_id**: `INT UNSIGNED NOT NULL`  
   _ID сеанса, на который куплен билет, связь один ко многим._
   
-- **row**: `TINYINT UNSIGNED NOT NULL`  
-  _Номер ряда, в котором находится место._
-  
-- **seat_number**: `TINYINT UNSIGNED NOT NULL`  
-  _Номер места, на которое куплен билет._
+- **seat_id**: `INT UNSIGNED NOT NULL`  
+  _ID места, на которое куплен билет, связь один комногим._
   
 - **purchase_date**: `DATETIME DEFAULT CURRENT_TIMESTAMP`  
   _Дата покупки билета (по умолчанию текущая дата и время)._
   
 
-### 12. user_action_logs
+### 11. user_action_logs
 - **id**: `INT UNSIGNED AUTO_INCREMENT PRIMARY KEY`  
   _Уникальный идентификатор записи в журнале действий._
   
