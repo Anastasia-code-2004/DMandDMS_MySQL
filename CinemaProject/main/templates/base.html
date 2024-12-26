@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Default title{% endblock title %}</title>
+    <link rel="stylesheet" href="{% static 'css/base.css' %}"/>
+    {% block scripts %}{% endblock scripts%}
+    {% block link %}{% endblock link %}
+</head>
+<body>
+    <nav>
+        <a href="{% url 'home' %}">Главная</a>
+        <a href="{% url 'movies' %}">Фильмы</a> 
+        <a href="{% url 'showtimes' %}">Сеансы</a> 
+        <a href="{% url 'profile' %}">Мой профиль</a>
+    </nav>
+    <h1>{% block header %}{% endblock header %}</h1>
+    {% block content %}{% endblock content %}
+    <footer>
+        <p align="center"><small>Copyright © Anastasia Nikolaychik, Синема Миракл, 2024. Все права защищены.</small></p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Фильмы{% endblock title %}
+{% block header %}Фильмы{% endblock header %}
+{% block link %}
+    <link rel="stylesheet" href="{% static 'css/movies.css' %}">
+{% endblock link %}
+{% block content %}
+    <!-- Форма для фильтрации и сортировки -->
+    <form method="GET">
+
+        <h3>Поиск по названию</h3>
+        <label for="search_title">
+            <input type="text" name="search_title" id="search_title" value="{{ search_title }}" placeholder="Введите название...">
+        </label><br>
+
+        <h3>Фильтрация по жанрам</h3>
+        <label>
+            <select name="genre" multiple>
+                {% for genre in genres %}
+                    <option value="{{ genre.id }}" {% if genre.id in selected_genres %}selected{% endif %}>{{ genre.name }}</option>
+                {% endfor %}
+            </select>
+        </label>
+
+        <h3>Дата выхода</h3>
+        <label for="min_date">Мин:</label>
+        <input type="date" name="min_date" id="min_date" value="{{ min_date }}">
+        <label for="max_date">Макс:</label>
+        <input type="date" name="max_date" id="max_date" value="{{ max_date }}">
+
+        <h3>Продолжительность</h3>
+        <label for="min_duration">Мин:</label>
+        <input type="number" name="min_duration" id="min_duration" value="{{ min_duration }}" min="0">
+        <label for="max_duration">Макс:</label>
+        <input type="number" name="max_duration" id="max_duration" value="{{ max_duration }}" min="0"><br>
+
+        <h3>Рейтинг</h3>
+        <label for="min_rating">Мин:</label>
+        <input type="number" name="min_rating" id="min_rating" value="{{ min_rating }}" step="0.1" min="0" max="10">
+        <label for="max_rating">Макс:</label>
+        <input type="number" name="max_rating" id="max_rating" value="{{ max_rating }}" step="0.1" min="0" max="10"><br>
+
+
+
+        <label for="sort">Упорядочить:</label>
+        <select name="sort" id="sort">
+            <option value="title" {% if sort_by == 'title' %}selected{% endif %}>название</option>
+            <option value="release_date" {% if sort_by == 'release_date' %}selected{% endif %}>дата выхода</option>
+            <option value="duration" {% if sort_by == 'duration' %}selected{% endif %}>продолжительность</option>
+            <option value="rating" {% if sort_by == 'rating' %}selected{% endif %}>рейтинг</option>
+        </select><br>
+
+        <button type="submit">Применить</button>
+    </form>
+
+    <ul>
+        {% for movie in movies %}
+            <li>
+                {% if movie.poster %}
+                    <img src="/media/posters/{{ movie.poster }}" alt="{{ movie.title }}" style="height:300px;">
+                {% endif %}
+                <h2>{{ movie.title }}</h2>
+                <p><strong>Рейтинг:</strong> {{ movie.rating }}</p>
+                <p><strong>Дата выхода:</strong> {{ movie.release_date }}</p>
+                <p><strong>Продолжительность:</strong> {{ movie.duration }}</p>
+                <a href="{% url 'movie_details' movie.id %}" class="movie-details-btn">Подробнее</a>
+            </li>
+        {% empty %}
+            <p>Нет фильмов.</p>
+        {% endfor %}
+    </ul>
+{% endblock content %}

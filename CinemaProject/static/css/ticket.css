@@ -1,0 +1,22 @@
+.ticket-details {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+}
+
+.ticket-card, .seat-info, .user-info {
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.ticket-card h3, .seat-info h4, .user-info h4 {
+    margin-bottom: 10px;
+}
+
+.actions a {
+    margin-right: 10px;
+}

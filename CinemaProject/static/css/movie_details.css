@@ -1,0 +1,146 @@
+/* Общие стили для страницы фильма */
+.movie-details {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Заголовок фильма */
+.movie-details h1 {
+    font-size: 36px;
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Подзаголовки */
+h3 {
+    font-size: 24px;
+    color: #c573ea;
+    margin-top: 40px;
+    border-bottom: 2px solid #c573ea;
+    padding-bottom: 10px;
+    text-align: left;
+}
+
+/* Стили для постера фильма */
+.movie-poster {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 20px 0;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Стили для информации о фильме */
+.movie-info {
+    font-size: 18px;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.movie-info strong {
+    color: #333;
+}
+
+/* Жанры фильма */
+ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+ul li {
+    background-color: #ffebf0;
+    border-radius: 5px;
+    margin: 5px 0;
+    padding: 10px;
+    font-size: 16px;
+    color: #555;
+}
+
+/* Описание фильма */
+.movie-description {
+    font-size: 16px;
+    color: #444;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+/* Отзывы */
+.reviews ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.reviews li {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.reviews li p {
+    font-size: 14px;
+    color: #666;
+}
+
+.reviews li strong {
+    color: #c573ea;
+}
+
+.reviews .review-rating {
+    font-size: 16px;
+    color: #ff6b6b;
+    font-weight: bold;
+}
+
+/* Стили для ссылок */
+a {
+    text-decoration: none;
+    color: #c573ea;
+    font-weight: bold;
+}
+
+a:hover {
+    color: #ff6b6b;
+    text-decoration: underline;
+}
+
+/* Стили для секции с сообщениями */
+.messages {
+    background-color: #ffe6e6;
+    padding: 10px;
+    border-radius: 5px;
+    color: #c573ea;
+    font-weight: bold;
+    margin-top: 20px;
+    border: 1px solid #ff6b6b;
+}
+
+/* Стили для кнопки возврата */
+.back-button {
+    display: inline-block;
+    padding: 10px 20px;
+    margin-top: 20px;
+    background-color: #c573ea;
+    color: white;
+    text-align: center;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.back-button:hover {
+    background-color: #ff6b6b;
+}

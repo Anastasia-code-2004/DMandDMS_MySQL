@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block title %}Редактирование зала{% endblock title %}
+{% block header %}Редактирование зала{% endblock header %}
+{% block content %}
+    {% if error %}
+        <div class="error-message" style="color: red; font-weight: bold;">
+            {{ error }}
+        </div>
+    {% endif %}
+    <form method="POST">
+        {% csrf_token %}
+        <label for="name">Название зала:</label>
+        <input type="text" id="name" name="name" value="{{ hall.name }}" required>
+        <button type="submit">Сохранить</button>
+    </form>
+
+    <h2>Места</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Ряд</th>
+                <th>Номер</th>
+                <th>Действия</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for seat in seats %}
+            <tr>
+                <td>{{ seat.row }}</td>
+                <td>{{ seat.number }}</td>
+                <td>
+                    <a href="{% url 'admin_delete_seat' seat.id %}" onclick="return confirm('Вы уверены?')">Удалить</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+    <h2>Добавить место</h2>
+    <form method="POST" action="{% url 'admin_add_seat' hall.id %}">
+        {% csrf_token %}
+        <label for="row">Ряд:</label>
+        <input type="number" id="row" name="row" min="1" max="100" required>
+        <label for="number">Номер:</label>
+        <input type="number" id="number" name="number" min="1" max="100" required>
+        <button type="submit">Добавить место</button>
+    </form>
+    <a href="{% url 'admin_halls_list'  %}">К залам</a>
+{% endblock content %}

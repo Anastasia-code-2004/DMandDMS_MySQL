@@ -1,0 +1,124 @@
+h3 {
+    color: #333;
+    font-size: 1.2em;
+}
+
+label {
+    font-size: 1em;
+    color: #555;
+}
+
+button {
+    background-color: #c573ea;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    font-size: 1em;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #b560d8;
+}
+
+select, input[type="number"], input[type="date"] {
+    padding: 8px;
+    margin: 5px 0;
+    width: 200px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+form {
+    background-color: #fff;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+form h3 {
+    margin-top: 0;
+}
+
+/* Стили для списка фильмов */
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    background-color: #fff;
+    margin-bottom: 20px;
+    padding: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+li img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+h2 {
+    color: #333;
+    font-size: 1.5em;
+    margin: 10px 0;
+}
+
+p {
+    color: #555;
+    font-size: 1em;
+    margin: 5px 0;
+}
+
+p strong {
+    font-weight: bold;
+}
+
+/* Стили для пустого списка */
+p {
+    text-align: center;
+    font-size: 1.2em;
+    color: #888;
+}
+
+/* Стили для формы и кнопок в фильтрации */
+form {
+    margin-bottom: 30px;
+}
+
+form label {
+    display: inline-block;
+    margin: 5px 0;
+}
+
+/* Стили для выбранных жанров */
+select[multiple] {
+    height: 150px;
+}
+
+.movie-details-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #c573ea; /* Цвет фона */
+    color: white; /* Цвет текста */
+    text-align: center;
+    border-radius: 5px; /* Закругленные углы */
+    text-decoration: none; /* Убираем подчеркивание */
+    font-size: 16px;
+    transition: background-color 0.3s ease; /* Плавное изменение фона */
+}
+
+.movie-details-btn:hover {
+    background-color: #ff6b6b; /* Цвет при наведении */
+}
+
+.movie-details-btn:active {
+    background-color: #ffb6c1; /* Цвет при нажатии */
+}

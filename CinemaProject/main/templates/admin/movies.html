@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}Список фильмов{% endblock title %}
+{% block header %}Список фильмов{% endblock header %}
+{% block content %}
+    <a href="{% url 'admin_add_movie' %}">Добавить фильм</a>
+    <table>
+        <thead>
+            <tr>
+                <th>Постер</th>
+                <th>ID</th>
+                <th>Название</th>
+                <th>Дата выхода</th>
+                <th>Рейтинг</th>
+                <th>Описание</th>
+                <th>Продолжительность</th>
+                <th>Действия</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for movie in movies %}
+            <tr>
+                <td>
+                    <img src="/media/posters/{{ movie.4 }}" alt="Постер {{ movie.1 }}" style="max-width: 50px; max-height: 75px;">
+                </td>
+                <td>{{ movie.0 }}</td> <!-- movie_id -->
+                <td>{{ movie.1 }}</td> <!-- title -->
+                <td>{{ movie.2|date:"Y-m-d" }}</td> <!-- release_date -->
+                <td>{{ movie.5 }}</td> <!-- rating -->
+                <td>{{ movie.6|truncatewords:10 }}</td> <!-- description -->
+                <td>{{ movie.3 }} мин.</td> <!-- duration -->
+                <td>
+                    <a href="{% url 'admin_edit_movie' movie.0 %}">Редактировать</a> |
+                    <a href="{% url 'admin_delete_movie' movie.0 %}" onclick="return confirm('Вы уверены?')">Удалить</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{% url 'profile'  %}">В профиль</a>
+{% endblock content %}

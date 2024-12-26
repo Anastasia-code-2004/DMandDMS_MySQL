@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Сеансы{% endblock %}
+{% block header %}Сеансы{% endblock %}
+{% block link %}
+    <link rel="stylesheet" href="{% static 'css/showtimes.css' %}">
+{% endblock %}
+{% block content %}
+    <!-- Форма для фильтрации и сортировки -->
+    <form method="GET">
+        <h3>Поиск по названию фильма</h3>
+        <label for="search_title">
+            <input type="text" name="search_title" id="search_title" value="{{ search_title }}" placeholder="Введите название...">
+        </label><br>
+
+        <h3>Фильтрация по жанрам</h3>
+        <label>
+            <select name="genre" multiple>
+                {% for genre in genres %}
+                    <option value="{{ genre.id }}" {% if genre.id in selected_genres %}selected{% endif %}>{{ genre.name }}</option>
+                {% endfor %}
+            </select>
+        </label><br>
+
+        <h3>Дата сеанса</h3>
+        <label for="min_date">Мин:</label>
+        <input type="date" name="min_date" id="min_date" value="{{ min_date }}">
+        <label for="max_date">Макс:</label>
+        <input type="date" name="max_date" id="max_date" value="{{ max_date }}"><br>
+
+        <h3>Цена сеанса</h3>
+        <label for="min_price">Мин:</label>
+        <input type="number" name="min_price" id="min_price" value="{{ min_price }}" step="0.01" min="0">
+        <label for="max_price">Макс:</label>
+        <input type="number" name="max_price" id="max_price" value="{{ max_price }}" step="0.01" min="0"><br>
+
+
+        <label for="sort">Упорядочить:</label>
+        <select name="sort" id="sort">
+            <option value="movie_title" {% if sort_by == 'movie_title' %}selected{% endif %}>название фильма</option>
+            <option value="price" {% if sort_by == 'price' %}selected{% endif %}>цена</option>
+        </select><br>
+
+        <button type="submit">Применить</button>
+    </form>
+
+    <ul>
+        {% for showtime in showtimes %}
+            <li>
+                {% if showtime.poster %}
+                    <img src="/media/posters/{{ showtime.poster }}" alt="{{ showtime.movie_title }}" style="height:200px;">
+                {% endif %}
+                <h2>{{ showtime.movie_title }}</h2>
+                <p><strong>Дата начала сеанса:</strong> {{ showtime.start_time }}</p>
+                <p><strong>Цена:</strong> {{ showtime.price }} руб.</p>
+                <a href="{% url 'showtime_details' showtime.id %}" class="showtime-details-btn">Подробнее</a>
+            </li>
+        {% empty %}
+            <p>Нет сеансов.</p>
+        {% endfor %}
+    </ul>
+{% endblock %}

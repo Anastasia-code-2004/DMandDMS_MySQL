@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}Добавить зал{% endblock title %}
+{% block header %}Добавить зал{% endblock header %}
+{% block content %}
+    {% if error %}
+        <div class="error-message" style="color: red; font-weight: bold;">
+            {{ error }}
+        </div>
+    {% endif %}
+    <div class="add-hall-container">
+        <h2>Добавить зал</h2>
+        <form method="POST" action="{% url 'admin_add_hall' %}">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="hall_name">Название зала:</label>
+                <input type="text" id="hall_name" name="hall_name" required>
+            </div>
+            <div class="form-group">
+                <label for="rows_count">Количество рядов:</label>
+                <input type="number" id="rows_count" name="rows_count" min="1" max="100" required>
+            </div>
+            <div class="form-group">
+                <label for="seats_per_row">Количество мест в ряду:</label>
+                <input type="number" id="seats_per_row" name="seats_per_row" min="1" max="100" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Добавить зал</button>
+        </form>
+    </div>
+    <a href="{% url 'admin_halls_list'  %}">К залам</a>
+{% endblock content %}

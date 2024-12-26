@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block title %}Отзыв{% endblock title %}
+{% block content %}
+    <h2>Оставить отзыв о фильме: {{ movie_title }}</h2>
+
+    {% if error %}
+        <div class="error-message">
+          <p>{{ error }}</p>
+        </div>
+    {% else %}
+        <form method="POST">
+        {% csrf_token %}
+
+        <div class="form-group">
+          <label for="review-text">Текст отзыва:</label>
+          <textarea id="review-text" name="review_text" rows="5" required></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="rating">Оценка (от 1 до 10):</label>
+          <input type="number" id="rating" name="rating" min="1" max="10" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Оставить отзыв</button>
+        </form>
+
+        <div>
+            <a href="{% url 'movie_details' movie_id %}">Назад к фильму</a>
+        </div>
+    {% endif %}
+{% endblock %}

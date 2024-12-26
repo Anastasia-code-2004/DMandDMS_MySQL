@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Синема Миракл{% endblock title %}
+{% block link %}
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+{% endblock link %}
+{% block content %}
+<main class="home">
+    <img 
+        src="/media/logo.jpeg"
+        alt="Логотип Синема Миракл"
+        class="logo-element">
+
+    <section class="quote-section">
+        {% if quote %}
+            <h2 class="quote">Цитата дня:</h2>
+            <blockquote cite="https://favqs.com/api/qotd">{{ quote }}</blockquote>
+        {% endif %}
+    </section>
+</main>
+{% endblock content %}

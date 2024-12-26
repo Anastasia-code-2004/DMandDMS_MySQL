@@ -1,0 +1,67 @@
+img[alt="Логотип Синема Миракл"] {
+    width: 45%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    transform: translateX(-30px);
+    transition: transform 0.3s ease;
+}
+
+/* Декоративная линия под заголовком */
+.section-title::after {
+    content: "";
+    display: block;
+    width: 60px; /* Длина линии */
+    height: 3px; /* Толщина линии */
+    background-color: #bde0fe; /* Цвет линии */
+    margin: 10px auto 0; /* Автоматическое центрирование */
+}
+
+/* Можно добавить тень для большей выразительности */
+.section-title {
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Общий стиль для заголовков секций */
+.section-title {
+    text-align: center;
+    font-size: 2rem; /* Размер шрифта можно подстроить под вкус */
+    margin-bottom: 20px; /* Расстояние между заголовком и контентом */
+    color: #333; /* Темный оттенок для текста */
+    position: relative;
+}
+
+h2.quote {
+    text-align: left;
+}
+
+#search-input {
+    padding: 8px;
+    font-size: 14px;
+    width: 250px;
+    margin-right: 10px;
+    border: 1px solid #ddd;
+}
+
+#search-button {
+    padding: 10px 15px;
+    background-color: #f8c7b5;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    height: 35px;
+}
+
+#search-button:hover {
+    background-color: #fdb29b;
+}
+
+
+
+
+
+
+
+
+

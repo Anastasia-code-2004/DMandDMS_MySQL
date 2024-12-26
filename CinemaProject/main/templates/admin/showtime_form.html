@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block title %}
+    {% if showtime %}Редактировать показ{% else %}Добавить показ{% endif %}
+{% endblock title %}
+{% block header %}
+    {% if showtime %}Редактировать показ{% else %}Добавить показ{% endif %}
+{% endblock header %}
+{% block content %}
+
+    {% if error_message %}
+        <div class="error-message">{{ error_message }}</div>
+    {% endif %}
+    <form method="POST">
+        {% csrf_token %}
+        <label for="start_datetime">Дата и время начала:</label>
+        <input type="datetime-local" id="start_datetime" name="start_datetime"
+                value="{{ showtime.start_datetime|date:'Y-m-d\TH:i' }}" required><br>
+
+
+        <label for="price">Цена:</label>
+        <input type="number" id="price" name="price" step="0.01" value="{{ showtime.price|stringformat:'0.2f' }}" required><br>
+
+
+        <label for="movie">Выбрать фильм:</label>
+        <select id="movie" name="movie_id" required>
+            {% for movie_id, movie_title in movies %}
+                <option value="{{ movie_id }}"
+                        {% if showtime.movie_id == movie_id %}selected{% endif %}>
+                    {{ movie_title }}
+                </option>
+            {% endfor %}
+        </select><br>
+
+        <label for="hall">Выбрать зал:</label>
+        <select id="hall" name="hall_id" required>
+            {% for hall_id, hall_name in halls %}
+                <option value="{{ hall_id }}"
+                        {% if showtime.hall_id == hall_id %}selected{% endif %}>
+                    {{ hall_name }}
+                </option>
+            {% endfor %}
+        </select><br>
+    <button type="submit">{% if showtime %}Обновить{% else %}Добавить{% endif %}</button>
+    </form>
+
+    <a href="{% url 'admin_showtimes_list' %}">Назад к списку показов</a>
+{% endblock content %}

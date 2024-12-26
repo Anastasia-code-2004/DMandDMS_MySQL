@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}Профиль{% endblock title %}
+{% block header %}Профиль{% endblock header %}
+{% block content %}
+    {% if is_authenticated %}
+        <p>Электронная почта: {{ email }}</p>
+
+        {% if is_superuser %}
+            <p><a href="{% url 'admin_genres_list' %}">CRUD жанров</a></p>
+            <p><a href="{% url 'admin_movies_list' %}">CRUD фильмов</a></p>
+            <p><a href="{% url 'admin_showtimes_list' %}">CRUD сеансов</a></p>
+            <p><a href="{% url 'admin_halls_list' %}">CRUD залов</a></p>
+            <p><a href="{% url 'admin_actions_list' %}">Действия пользователей</a></p>
+        {% else %}
+            <p><a href="{% url 'my_tickets' %}">Мои билеты</a></p>
+            <p><a href="{% url 'my_reviews' %}">Мои отзывы</a></p>
+        {% endif %}
+
+        <p><a href="{% url 'logout' %}">Выход</a></p>
+    {% else %}
+        <p>Вы не авторизованы.</p>
+        <p><a href="{% url 'login' %}">Вход</a></p>
+        <p><a href="{% url 'register' %}">Регистрация</a></p>
+    {% endif %}
+{% endblock content %}

@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}Мои отзывы{% endblock %}
+
+{% block content %}
+    <h1>Мои отзывы</h1>
+
+    {% if reviews %}
+        <ul>
+            {% for review in reviews %}
+                <li>
+                    <p><strong>Оценка: {{ review.1 }}</strong></p>
+                    <p>{{ review.0 }}</p>  <!-- описание отзыва -->
+                    <p>Фильм: {{ review.2 }}</p>  <!-- movie_id -->
+                    <small>Дата: {{ review.3|date:"Y-m-d H:i:s" }}</small>  <!-- дата создания отзыва -->
+                </li>
+            {% endfor %}
+        </ul>
+        <a href="{% url 'profile' %}">Вернуться назад</a>
+    {% else %}
+        <p>Вы еще не оставляли отзывы.</p>
+    {% endif %}
+{% endblock %}

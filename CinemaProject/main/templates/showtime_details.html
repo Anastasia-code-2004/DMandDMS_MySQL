@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Сеанс{% endblock %}
+
+{% block link %}
+    <link rel="stylesheet" href="{% static 'css/showtime_details.css' %}">
+{% endblock %}
+{% block content %}
+    <div class="showtime-container">
+        <h1 class="movie-title">{{ showtime.movie.title }}</h1>
+
+        <div class="movie-info">
+            <img src="/media/posters/{{ showtime.movie.poster }}" alt="{{ showtime.movie.title }}" class="movie-poster">
+            <div class="movie-details">
+                <p><strong>Описание:</strong> {{ showtime.movie.description }}</p>
+                <p><strong>Рейтинг:</strong> {{ showtime.movie.rating }}</p>
+                <p><strong>Дата выхода:</strong> {{ showtime.movie.release_date }}</p>
+                <p><strong>Продолжительность:</strong> {{ showtime.movie.duration }} мин.</p>
+            </div>
+        </div>
+
+        <h2 class="showtime-info-title">Информация о сеансе</h2>
+        <div class="showtime-info">
+            <p><strong>Дата и время:</strong> {{ showtime.start_time }}</p>
+            <p><strong>Цена:</strong> {{ showtime.price }} руб.</p>
+        </div>
+
+        <h2 class="seating-title">Рассадка</h2>
+        <table class="seating-table">
+            <thead>
+                <tr>
+                    <th>Ряд</th>
+                    <th>Место</th>
+                    <th>Статус</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for seat in seats %}
+                <tr class="{% if not seat.is_available %}occupied{% else %}available{% endif %}">
+                    <td>{{ seat.row }}</td>
+                    <td>{{ seat.seat_number }}</td>
+                    <td>
+                        {% if seat.is_available %}
+                            <a href="{% url 'book_ticket' showtime.showtime_id seat.id %}" class="book-seat">Свободно</a>
+                        {% else %}
+                            <span class="occupied-status">Занято</span>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <a href="{% url 'showtimes' %}" class="back-btn">Назад</a>
+    </div>
+
+{% endblock %}
+

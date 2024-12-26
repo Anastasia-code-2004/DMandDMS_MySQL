@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}Список залов{% endblock title %}
+{% block header %}Список залов{% endblock header %}
+{% block content %}
+    <a href="{% url 'admin_add_hall' %}">Добавить зал</a>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Название</th>
+                <th>Действия</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for hall in halls %}
+            <tr>
+                <td>{{ hall.id }}</td> <!-- ID зала -->
+                <td>{{ hall.name }}</td> <!-- Название зала -->
+                <td>
+                    <a href="{% url 'admin_edit_hall' hall.id %}">Редактировать</a> |
+                    <a href="{% url 'admin_delete_hall' hall.id %}" onclick="return confirm('Вы уверены?')">Удалить</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{% url 'profile'  %}">В профиль</a>
+{% endblock content %}

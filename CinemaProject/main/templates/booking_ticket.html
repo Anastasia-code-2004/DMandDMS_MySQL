@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Билет{% endblock %}
+{% block link %}
+    <link rel="stylesheet" href="{% static 'css/ticket.css' %}">
+{% endblock %}
+{% block content %}
+    {% if error %}
+        <div class="alert alert-danger">
+            {{ error }}
+        </div>
+    {% else %}
+        <div class="ticket-details">
+            <h2>Информация о билете</h2>
+            <div class="ticket-card">
+                <h3>Фильм: {{ ticket.showtime.movie }}</h3>
+                <p><strong>Время начала:</strong> {{ ticket.showtime.start_time }}</p>
+                <p><strong>Цена билета:</strong> {{ ticket.showtime.price }} руб.</p>
+            </div>
+
+            <div class="seat-info">
+                <h4>Место:</h4>
+                <p><strong>Зал:</strong> {{ ticket.seat.hall }}</p>
+                <p><strong>Ряд:</strong> {{ ticket.seat.row }}</p>
+                <p><strong>Место:</strong> {{ ticket.seat.number }}</p>
+            </div>
+
+            <div class="user-info">
+                <h4>Ваши данные:</h4>
+                <p><strong>Почта:</strong> {{ ticket.user.user_email }}</p>
+            </div>
+
+            <div class="actions">
+                <a href="{% url 'booking_confirm' ticket.showtime.showtime_id ticket.seat.seat_id %}" class="btn btn-primary">Подтвердить бронь</a>
+                <a href="{% url 'showtime_details' ticket.showtime.showtime_id %}" class="btn btn-secondary">Назад</a>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}

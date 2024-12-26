@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block title %}Билеты{% endblock %}
+{% block content %}
+    {% if error %}
+        <div class="alert alert-danger">
+            {{ error }}
+        </div>
+    {% else %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Дата покупки</th>
+                    <th>Цена</th>
+                    <th>Время начала</th>
+                    <th>Название зала</th>
+                    <th>Ряд</th>
+                    <th>Место</th>
+                    <th>Фильм</th>
+                    <th>Действия</th>  <!-- Столбец для кнопок -->
+                </tr>
+            </thead>
+            <tbody>
+                {% for ticket in tickets %}
+                <tr>
+                    <!-- Выводим данные из каждого тикета -->
+                    <td>{{ ticket.0|date:"Y-m-d H:i:s" }}</td>  <!-- purchase_date -->
+                    <td>{{ ticket.1 }}</td>  <!-- price -->
+                    <td>{{ ticket.2|date:"Y-m-d H:i:s" }}</td>  <!-- start_time -->
+                    <td>{{ ticket.3 }}</td>  <!-- hall name -->
+                    <td>{{ ticket.4 }}</td>  <!-- row -->
+                    <td>{{ ticket.5 }}</td>  <!-- seat number -->
+                    <td>{{ ticket.6 }}</td>  <!-- movie title -->
+
+                    <!-- Кнопка для отмены билета -->
+                    <td>
+                        <form action="{% url 'cancel_ticket' ticket_id=ticket.7 %}" method="post">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-danger">Отказаться</button>
+                        </form>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="8">У вас нет забронированных билетов.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="{% url 'profile' %}">Вернуться назад</a>
+    {% endif %}
+{% endblock %}

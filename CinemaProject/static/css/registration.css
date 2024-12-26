@@ -1,0 +1,146 @@
+
+/* Стили для шапки */
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    position: relative;
+}
+
+header h2 {
+    margin: 0;
+    font-size: 1.8em;
+}
+
+
+/* Основной контейнер формы регистрации */
+main {
+    padding: 40px 20px;
+    max-width: 500px;
+    margin: 0 auto;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.registration-form {
+    margin-bottom: 30px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 1.1em;
+    margin-bottom: 8px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1em;
+    margin-bottom: 10px;
+}
+
+.form-actions {
+    text-align: center;
+}
+
+.form-actions input[type="submit"] {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    font-size: 1em;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.form-actions input[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+/* Общие стили для селектов */
+select {
+    width: 100%; /* Растягиваем селекты по ширине */
+    padding: 10px 15px; /* Добавляем внутренние отступы */
+    font-size: 1rem; /* Размер шрифта */
+    border-radius: 8px; /* Закругляем углы */
+    border: 2px solid #ccc; /* Светлая рамка */
+    background-color: #f9f9f9; /* Светлый фон */
+    color: #333; /* Темный текст */
+    appearance: none; /* Убираем стандартный стиль */
+    -webkit-appearance: none; /* Для Safari */
+    -moz-appearance: none; /* Для Firefox */
+    transition: border-color 0.3s ease, background-color 0.3s ease; /* Плавные переходы */
+}
+
+/* Стили для селекта при фокусе */
+select:focus {
+    border-color: #4CAF50; /* Зеленая рамка при фокусе */
+    background-color: #fff; /* Белый фон при фокусе */
+    outline: none; /* Убираем стандартную обводку */
+}
+
+/* При наведении на селект */
+select:hover {
+    border-color: #777; /* Цвет рамки при наведении */
+}
+
+/* Стилизация стрелки в селекте */
+select::-ms-expand {
+    display: none; /* Убираем стандартную стрелку для IE */
+}
+
+/* Контейнер для всех селектов */
+.select-wrapper {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+/* Добавление кастомной стрелки */
+.select-wrapper::after {
+    content: '\25BC'; /* Символ стрелки вниз */
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.2em;
+    color: #333;
+    pointer-events: none;
+}
+
+/* Меньшие стили для лейблов */
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Стили для контейнера, чтобы улучшить внешний вид */
+.form-group {
+    margin-bottom: 20px;
+}
+
+#age-info {
+    background-color: #f0f8ff;
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 20px;
+    border: 1px solid #b0c4de;
+}
+
+#age-message, #day-message {
+    font-size: 1.1em;
+    color: #333;
+}

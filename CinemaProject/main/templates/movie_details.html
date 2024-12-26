@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}{{ movie.title }}{% endblock title %}
+
+{% block header %}
+    <h1>{{ movie.title }}</h1>
+{% endblock header %}
+{% block link %}
+    <link rel="stylesheet" href="{% static 'css/movie_details.css' %}">
+{% endblock link %}
+{% block content %}
+
+    <!-- Проверка на наличие постера -->
+    {% if movie.poster %}
+        <img src="/media/posters/{{ movie.poster }}" alt="Постер фильма {{ movie.title }}"
+             class="movie-poster" style="height: 400px">
+    {% else %}
+        <p><strong>Постер:</strong> Постер не доступен</p>
+    {% endif %}
+
+    <p><strong>Дата релиза:</strong> {{ movie.release_date|date:"d M Y" }}</p>
+    <p><strong>Продолжительность:</strong> {{ movie.duration }} минут</p>
+
+    <!-- Проверка на наличие рейтинга -->
+    {% if movie.rating %}
+        <p><strong>Рейтинг:</strong> {{ movie.rating }}</p>
+    {% else %}
+        <p><strong>Рейтинг:</strong> Не указан</p>
+    {% endif %}
+
+    <!-- Жанры -->
+    <h3>Жанры</h3>
+    <ul>
+        {% for genre in movie.genres %}
+            <li>{{ genre }}</li>
+        {% empty %}
+            <li>Жанры не указаны</li>
+        {% endfor %}
+    </ul>
+
+    <!-- Описание фильма -->
+    <h3>Описание</h3>
+    <p>{{ movie.description|default:"Описание отсутствует" }}</p>
+
+    <!-- Секция отзывов -->
+    <h3>Отзывы</h3>
+    <ul>
+        {% for review in reviews %}
+            <li>
+                <p><strong>Рейтинг:</strong> {{ review.0 }} / 10</p>
+                <p><strong>Пользователь:</strong> {{ review.3 }}</p>
+                <p><strong>Дата:</strong> {{ review.2|date:"d M Y H:i" }}</p>
+                <p><strong>Комментарий:</strong> {{ review.1|default:"Комментарий отсутствует" }}</p>
+            </li>
+        {% empty %}
+            <p>Пока нет отзывов на этот фильм.</p>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'add_review' movie.id %}">Оставить отзыв</a>
+    <!-- Сеансы фильма -->
+    <h3>Сеансы</h3>
+    <ul>
+        {% for showtime in showtimes %}
+            <li>
+                <a href="{% url 'showtime_details' showtime.1 %}">
+                    {{ showtime.0|date:"d M Y H:i" }}
+                </a>
+            </li>
+        {% empty %}
+            <li>Сеансов нет</li>
+        {% endfor %}
+    </ul>
+
+    <a href="{% url 'movies' %}">Вернуться к фильмам</a>
+
+{% endblock content %}
